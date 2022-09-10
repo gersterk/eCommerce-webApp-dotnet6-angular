@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppAPI.Domain\AppAPI.Domain.csproj" />
+    <ProjectReference Include="..\..\Core\AppAPI.Application\AppAPI.Application.csproj" />
   </ItemGroup>
 
 </Project>
