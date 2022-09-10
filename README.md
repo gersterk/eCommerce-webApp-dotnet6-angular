@@ -10,11 +10,11 @@
 
 #Stacks
 
-.NET CORE 6 
-Angular 12
-EntityFramework
-PostgreSQL
-Docker
-EntityFramework
+- .NET CORE 6 
+- Angular 12
+- EntityFramework
+- PostgreSQL
+- Docker
+- EntityFramework
 
 
