@@ -10,4 +10,8 @@
     <ProjectReference Include="..\AppAPI.Domain\AppAPI.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstraction\" />
+  </ItemGroup>
+
 </Project>
