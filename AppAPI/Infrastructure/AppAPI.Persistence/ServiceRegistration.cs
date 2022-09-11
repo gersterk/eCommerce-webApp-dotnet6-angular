@@ -17,7 +17,7 @@ namespace AppAPI.Persistence
         public static void AddPersistenceService(this IServiceCollection services)
         {
             services.AddDbContext<ECommerceAPIDbContext>(options => options.UseNpgsql
-            ("User ID=postgres;Password=123456;Host=localhost;Port=5432;Database=ECommerceAPIDb;")); 
+            ("User ID=postgres;Password=123456;Host=localhost;Port=5433;Database=ECommerceAPIDb;")); 
         }
     }
 }
