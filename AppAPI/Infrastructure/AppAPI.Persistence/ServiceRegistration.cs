@@ -16,8 +16,8 @@ namespace AppAPI.Persistence
         //via this injection the app will pass/transact the specific services once its interface was called
         public static void AddPersistenceService(this IServiceCollection services)
         {
-            services.AddDbContext<ECommerceAPIDbContext>(options => options.UseNpgsql
-            ("User ID=postgres;Password=123456;Host=localhost;Port=5433;Database=ECommerceAPIDb;")); 
+            services.AddDbContext<ECommerceAPIDbContext>(options => options.UseNpgsql(Configuration.ConnectionString));
+
         }
     }
 }
