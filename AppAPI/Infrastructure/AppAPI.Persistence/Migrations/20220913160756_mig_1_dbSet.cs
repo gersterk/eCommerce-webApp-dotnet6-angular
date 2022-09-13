@@ -20,7 +20,7 @@ namespace AppAPI.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
-                });
+                }); 
 
             migrationBuilder.CreateTable(
                 name: "Products",
