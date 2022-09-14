@@ -13,8 +13,8 @@ namespace AppAPI.Application.Repositories
         IQueryable<T> GetAll(); //if we would be looking for something to the with memory, we would use IENumerable but nah, lets query
         IQueryable<T> GetWhere(Expression<Func<T, bool>> method);
 
-        Task<T> GetSingleAsynch(Expression<Func<T, bool>> method); //brings THE ONE
-        Task<T> GetByIdAsynch(string id); //brings the choosen one
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> method); //brings THE ONE
+        Task<T> GetByIdAsync(string id); //brings the choosen one
         
     }
 }

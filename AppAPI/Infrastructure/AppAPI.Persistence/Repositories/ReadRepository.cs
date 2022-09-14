@@ -24,14 +24,16 @@ namespace AppAPI.Persistence.Repositories
 
         public IQueryable<T> GetAll() => Table;
 
-        public async Task<T> GetSingleAsynch(Expression<Func<T, bool>> method) 
-            =>await Table.FirstOrDefaultAsync(method);
+        public async Task<T> GetSingleAsync(Expression<Func<T, bool>> method)
+            => await Table.FirstOrDefaultAsync(method);
 
-        public IQueryable<T> GetWhere(Expression<Func<T, bool>> method) 
+        public IQueryable<T> GetWhere(Expression<Func<T, bool>> method)
             => Table.Where(method);
 
-        public async Task<T> GetByIdAsynch(string id) //marker pattern
-            => await Table.FirstOrDefaultAsync(value => value.Id==Guid.Parse(id)); 
+        public async Task<T> GetByIdAsync(string id) //marker pattern
+        {
+            return await Table.FirstOrDefaultAsync(value => value.Id == Guid.Parse(id));
+        } 
 
         //id base reflection issue/topic, worth to learn but marker pattern is better 
     }

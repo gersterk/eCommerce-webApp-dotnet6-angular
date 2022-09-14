@@ -8,13 +8,16 @@ using System.Threading.Tasks;
 
 namespace AppAPI.Application.Repositories
 {
-    public interface IWriterRepository<T> : IRepository<T> where T : BaseEntity
+    public interface IWriteRepository<T> : IRepository<T> where T : BaseEntity
     {
         Task<bool> AddAsync(T model); //well why bool, dunno, I feel so, it should true or false, is it added?
-        Task<bool> AddAsync(List<T> model);
-        Task<bool> Remove(T model);
-        Task<bool> Remove(string id);
+        Task<bool> AddRangeAsync(List<T> datas);
+        bool Remove(T model);
+        bool RemoveRange(List<T> datas);
+        Task <bool> RemoveAsync(string id);
 
-        Task<bool> UpdateAsynch(T model);
+        bool Update(T model);
+
+        Task<int> SaveAsync();
     }
 }
