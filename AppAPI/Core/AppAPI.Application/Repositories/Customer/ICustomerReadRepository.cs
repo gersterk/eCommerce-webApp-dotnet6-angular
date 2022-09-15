@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppAPI.Application.Repositories
 {
-    public interface ICustomerWriteRepository : IWriteRepository<Customer>
+    public interface ICustomerReadRepository : IReadRepository<Customer>
     {
     }
 }
