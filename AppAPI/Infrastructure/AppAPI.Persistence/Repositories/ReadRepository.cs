@@ -31,9 +31,9 @@ namespace AppAPI.Persistence.Repositories
             => Table.Where(method);
 
         public async Task<T> GetByIdAsync(string id) //marker pattern
-        {
-            return await Table.FirstOrDefaultAsync(value => value.Id == Guid.Parse(id));
-        } 
+
+        /*await Table.FirstOrDefaultAsync(value => value.Id == Guid.Parse(id));*/
+        => await Table.FindAsync(Guid.Parse(id));
 
         //id base reflection issue/topic, worth to learn but marker pattern is better 
     }
