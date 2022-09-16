@@ -9,7 +9,7 @@ namespace AppAPI.Domain.Entities
 {
     public class Order : BaseEntity
     {
-        public int CustomerId { get; set; } //each order will hold an id of a customer
+        public Guid CustomerId { get; set; } //each order will hold an id of a customer
         public string Description { get; set; }
 
         public string Address { get; set; } //could be a value object too, because an address has very micro details, county, city, street

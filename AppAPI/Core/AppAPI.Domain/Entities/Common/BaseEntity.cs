@@ -13,5 +13,7 @@ namespace AppAPI.Domain.Entities.Common
         //other entities will be inherited from this class
         public Guid Id { get; set; } //I think its safer more fantastic to use guids .swh
         public DateTime CreateDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
+
     }
 }
