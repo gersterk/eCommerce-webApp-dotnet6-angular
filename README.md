@@ -11,10 +11,17 @@
 #Stacks
 
 - .NET CORE 6 
-- Angular 12
+- Angular 13
 - EntityFramework
 - PostgreSQL
 - Docker
 - EntityFramework
 
+
+-UI
+
+Angular 13
+
+Admin : Material
+Client : Bootstrap
 
