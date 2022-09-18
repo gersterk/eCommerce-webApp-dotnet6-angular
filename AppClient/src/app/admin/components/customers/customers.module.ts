@@ -10,7 +10,7 @@ import { CustomersComponent } from '../../customers/customers.component';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path: "x", component: CustomersComponent}
+      {path: "", component: CustomersComponent}
     ])
   ]
 })
