@@ -9,9 +9,9 @@ const routes: Routes = [
   {path: "", component: DashboardComponent},
   {path: "customers", loadChildren : ()=> 
   import("./admin/components/customers/customers.module").then(module=>module.CustomersModule)},
-  {path: "oders", loadChildren : ()=>
+  {path: "orders", loadChildren : ()=>
   import("./admin/components/orders/orders.module").then(module=>module.OrdersModule)},
-  {path : "prdoucts", loadChildren : ()=>
+  {path : "products", loadChildren : ()=>
   import ("./admin/components/products/products.module").then(module=>module.ProductsModule)},
   
 ]},
