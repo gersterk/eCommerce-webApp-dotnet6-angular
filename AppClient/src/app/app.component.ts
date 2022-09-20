@@ -9,6 +9,3 @@ export class AppComponent {
   title = 'AppClient';
 }
 
-$(document).ready(()=>{
-  alert("jquery works")
-})
