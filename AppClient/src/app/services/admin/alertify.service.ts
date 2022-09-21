@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { mergeScan } from 'rxjs';
 declare var alertify: any;
 
 
@@ -9,9 +10,27 @@ export class AlertifyService {
 
   constructor() { }
 
-  message(message:string, messageType:MessageType){
-alertify
+  message(message:string, options : Partial<AlertifyOptions>){
+  
+    alertify.set('notfier', 'delay', options.delay);
+    alertify.set('notifier', 'position', options.position);
+    alertify[options.messageType](message);
+    const msg = alertify[options.messageType](message);
+    if(options.dismissOthers){
+      msg.dismissOthers();
+    }
+
   }
+
+  dismiss(){
+    alertify.dismissAll();
+  }
+}
+export class AlertifyOptions{
+  messageType : MessageType = MessageType.Message;
+  position : Position = Position.BottomRight;
+  delay : number = 3;
+  dismissOthers : boolean = false;
 }
 
 export enum MessageType{
@@ -20,4 +39,13 @@ export enum MessageType{
   Notify= "notify",
   Success = "success",
   Warning= "warning"
+}
+
+export enum Position {
+  TopCenter ="top-center",
+  TopRight = "top-right",
+  TopLeft = "top-left",
+  BottomRight = "bottom-right",
+  BottomLeft = "bottom-left",
+  BottomCenter = "bottom-center"
 }

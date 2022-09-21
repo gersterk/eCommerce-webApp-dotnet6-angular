@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 declare var alertify: any;
 
 @Component({
@@ -8,9 +9,14 @@ declare var alertify: any;
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alertify : AlertifyService) { }
 
   ngOnInit(): void {
+    this.alertify.message("hello", {messageType: MessageType.Success,
+      delay : 3,
+      position : Position.TopCenter
+
+    })
    
   }
 
