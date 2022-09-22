@@ -10,24 +10,12 @@ declare var $: any
 export class AppComponent {
   title = 'AppClient';
 
-  constructor(private toastrService : CustomToastrService){
-    toastrService.message("Hello", "Sores", {
-      messageType :ToastrMessageType.Info, 
-      position : ToastrPosition.BottomRight
-    });
-    toastrService.message("Hello", "Sores", {
-      messageType :ToastrMessageType.Success, 
-      position : ToastrPosition.BottomRight
-    });
-    toastrService.message("Hello", "Sores", {
-      messageType :ToastrMessageType.Warning, 
-      position : ToastrPosition.BottomRight
-    });
-    toastrService.message("Hello", "Sores", {
-      messageType :ToastrMessageType.Error, 
-      position : ToastrPosition.BottomRight
-    });
-
-  }
+  constructor(){}
+  // constructor(private toastrService : CustomToastrService){
+  //   toastrService.message("Hello", "Sores", {
+  //     messageType :ToastrMessageType.Info, 
+  //     position : ToastrPosition.BottomRight
+  //   });
+  
 }
 
