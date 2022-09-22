@@ -20,8 +20,6 @@
 
 # UI
 
-Angular 13
-
 - Admin
 
 Material , Alertify
