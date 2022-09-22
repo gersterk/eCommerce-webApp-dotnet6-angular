@@ -15,8 +15,7 @@
 - EntityFramework
 - PostgreSQL
 - Docker
-- EntityFramework
-
+- 
 
 # UI
 
