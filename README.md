@@ -15,12 +15,9 @@
 - EntityFramework
 - PostgreSQL
 - Docker
-- EntityFramework
-
+- 
 
 # UI
-
-Angular 13
 
 - Admin
 
