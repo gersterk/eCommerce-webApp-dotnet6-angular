@@ -13,6 +13,12 @@ namespace AppAPI.API
             // Add services to the container.
             builder.Services.AddPersistenceService();
 
+
+            builder.Services.AddCors(options=>options.AddDefaultPolicy(policy=>
+            policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()
+            ));
+            //This service configure and sets CORS(cross-origin resource sharing) SAME ORIGIN POLICY
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -27,7 +33,10 @@ namespace AppAPI.API
                 app.UseSwaggerUI();
             }
 
+            app.UseCors();
+;
             app.UseHttpsRedirection();
+            
 
             app.UseAuthorization();
 
