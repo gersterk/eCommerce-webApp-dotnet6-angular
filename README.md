@@ -26,7 +26,7 @@ Material , Alertify
 
 - Client
 
-Bootstrap , Toastr
+Bootstrap , Toastr, Spinner
 
 
 
