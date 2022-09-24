@@ -32,7 +32,8 @@ namespace AppAPI.Persistence.Contexts
                 _ = data.State switch     // _ discard, when we dont want to return anything
                 {
                     EntityState.Added => data.Entity.CreateDate = DateTime.UtcNow,
-                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.UtcNow
+                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.UtcNow,
+                    _ => DateTime.UtcNow
                 };
 
                 

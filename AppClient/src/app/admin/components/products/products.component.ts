@@ -21,40 +21,34 @@ export class ProductsComponent extends BaseComponent implements OnInit {
       controller: "products"
     }).subscribe(data=> console.log(data));
 
-    this.httpClientService.post({
-
+    this.httpClientService.delete({
       controller : "products"
+    },"5af96ac6-3814-4af6-9e09-d4ac63f1d0f1").subscribe();
+    // this.httpClientService.post({
 
-    },{
-      name  : "pencil",
-      price: 20,
-      stock : 100
+    //   controller : "products"
 
-    }).subscribe();
+    // },{
+    //   name  : "pencil",
+    //   price: 20,
+    //   stock : 100
 
+    // }).subscribe();
 
-    this.httpClientService.post({
+    // this.httpClientService.put({
+    //   controller : "products",
+    // },{
+    //   id: "6b741440-8028-4887-9697-d6b0573b05e4",
+    //   name: "colorful pencil",
+    //   stock: 1500,
+    //   price : 5.4
 
-      controller : "products"
+    // }).subscribe()
 
-    },{
-      name  : "book",
-      price: 50,
-      stock : 10
-
-    }).subscribe();
-
-
-    this.httpClientService.post({
-
-      controller : "products"
-
-    },{
-      name  : "pc",
-      price: 2000,
-      stock : 15
-
-    }).subscribe();
+    //
+    this.httpClientService.get({
+      fullEndPoint: "https://jsonplaceholder.typicode.com/posts",
+    }).subscribe(data => console.log(data));
+   }
   }
 
-}
