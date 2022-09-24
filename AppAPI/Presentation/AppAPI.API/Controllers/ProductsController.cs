@@ -64,6 +64,7 @@ namespace AppAPI.API.Controllers
             product.Name = model.Name;
             product.Price = model.Price;
             product.Stock = model.Stock;
+
             await _productWriteRepository.SaveAsync();
 
             return Ok();
