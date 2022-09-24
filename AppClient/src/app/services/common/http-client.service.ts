@@ -30,8 +30,15 @@ return this.httpClient.get<T>(url, {headers: requestParameters.headers })
 
   }
 
-post(){
+post<T>(requestParameters : Partial<RequestParameters>, body :Partial<T>) : Observable<T>{
 
+  let url: string = "";
+  if(requestParameters.fullEndPoint)
+  url  = requestParameters.fullEndPoint;
+  else
+  url = `${this.url(requestParameters)}`
+
+  return this.httpClient.post<T>(url, body, {headers : requestParameters.headers});
 }
 
 put(){

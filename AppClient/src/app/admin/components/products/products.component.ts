@@ -20,6 +20,41 @@ export class ProductsComponent extends BaseComponent implements OnInit {
     this.httpClientService.get({
       controller: "products"
     }).subscribe(data=> console.log(data));
+
+    this.httpClientService.post({
+
+      controller : "products"
+
+    },{
+      name  : "pencil",
+      price: 20,
+      stock : 100
+
+    }).subscribe();
+
+
+    this.httpClientService.post({
+
+      controller : "products"
+
+    },{
+      name  : "book",
+      price: 50,
+      stock : 10
+
+    }).subscribe();
+
+
+    this.httpClientService.post({
+
+      controller : "products"
+
+    },{
+      name  : "pc",
+      price: 2000,
+      stock : 15
+
+    }).subscribe();
   }
 
 }
