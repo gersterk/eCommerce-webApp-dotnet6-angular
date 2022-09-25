@@ -21,7 +21,3 @@ export class AppComponent {
   
 }
 
-
-$.get("https://localhost:7194/api/products", data =>{
-  console.log(data)
-}) //same origin policy test
