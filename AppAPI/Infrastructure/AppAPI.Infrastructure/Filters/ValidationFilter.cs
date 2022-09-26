@@ -20,6 +20,8 @@ namespace AppAPI.Infrastructure.Filters
                     .ToArray();
 
                 context.Result = new BadRequestObjectResult(errors);
+                return;
+
 
 
             }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
+import { Create_Product } from 'src/app/contracts/create_product';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 
@@ -26,6 +27,19 @@ export class CreateComponent extends BaseComponent implements OnInit {
       create_product.price = parseFloat(price.value);
       create_product.stock = parseInt(stock.value);
 
+      if(!name.value){
+        
+        this.alertify.message("Product could not be added",{
+          dismissOthers: true,
+          messageType:MessageType.Error,
+          position: Position.TopRight
+          
+        });
+        return;
+      } //this is a sample
+
+      
+
       this.productService.create(create_product, ()=> {
         this.hideSpinner(SpinnerType.ballAtom);
         this.alertify.message("Product has been successfuly added",{
@@ -33,6 +47,14 @@ export class CreateComponent extends BaseComponent implements OnInit {
           messageType:MessageType.Success,
           position: Position.TopRight
         });
+      }, errorMessage => {
+        this.alertify.message(errorMessage,{
+          dismissOthers : true,
+          messageType : MessageType.Error,
+          position: Position.TopRight
+
+        })
+
       });
     }
 

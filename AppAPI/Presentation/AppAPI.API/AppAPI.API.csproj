@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Core\AppAPI.Application\AppAPI.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\AppAPI.Infrastructure\AppAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\AppAPI.Persistence\AppAPI.Persistence.csproj" />
   </ItemGroup>
 
