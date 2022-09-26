@@ -1,5 +1,8 @@
 
+using AppAPI.Application.Validators.Products;
+using AppAPI.Infrastructure.Filters;
 using AppAPI.Persistence;
+using FluentValidation.AspNetCore;
 
 namespace AppAPI.API
 {
@@ -19,7 +22,11 @@ namespace AppAPI.API
             ));
             //This service configure and sets CORS(cross-origin resource sharing) SAME ORIGIN POLICY
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options=>options.Filters.Add<ValidationFilter>())
+                .AddFluentValidation(configuration => configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>
+                ()).ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
