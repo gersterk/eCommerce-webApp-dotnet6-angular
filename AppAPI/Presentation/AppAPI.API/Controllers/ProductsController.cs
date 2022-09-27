@@ -32,7 +32,14 @@ namespace AppAPI.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(_productReadRepository.GetAll());
+            return Ok(_productReadRepository.GetAll().Select(p => new
+            {
+                p.Id,
+                p.Name,
+                p.Price,
+                p.CreateDate,
+                p.UpdatedDate 
+            }));
 
         }
         [HttpGet("{id}")]
@@ -46,11 +53,7 @@ namespace AppAPI.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(VM_Create_Product model) //post attributes shouldnt be applying any post proccess by The Entity : like (Product model) 
         {
-            if(ModelState.IsValid)
-            {
-
-            }
-
+            
             await _productWriteRepository.AddAsync(new()
             {
                 Name = model.Name,
