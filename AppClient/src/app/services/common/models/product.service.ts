@@ -11,7 +11,7 @@ export class ProductService {
 
   constructor(private httpClientService : HttpClientService) { }
 
-  create(product : Create_Product, successCallBack? : any, errorCallBack?: any){
+  create(product : Create_Product, successCallBack? : any, errorCallBack?: (errorMessage : string)=> void){
 
     this.httpClientService.post({
       controller: "products"
@@ -37,13 +37,13 @@ export class ProductService {
  
  
   }
-      async read() : Promise<List_Product[]>{
+      async read(successCallBack : () => void, errorCallBack : (errorMessage:string)=> void) : Promise<List_Product[]>{
       const promiseData : Promise<List_Product[]> =  this.httpClientService.get<List_Product[]>({
         controller : "products"
       }).toPromise();
 
-      promiseData.then()
-      .catch()
+      promiseData.then(d => successCallBack())
+      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
       return await promiseData;
     }
 }
