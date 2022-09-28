@@ -8,7 +8,7 @@
 
 
 
-#Stacks
+# Stacks
 
 - .NET CORE 6 
 - Angular 13
