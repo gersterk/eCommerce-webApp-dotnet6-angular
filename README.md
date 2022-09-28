@@ -31,7 +31,7 @@ Bootstrap , Toastr, Spinner
 
 
 
-
+----------------------------------------------------------------
 
 This is a bootcamp was immersively based on Dotnet technologies I have been attended and have costumely improved the lines of codes. This will remain a perfect demo 
 for my future project of entreprenuering. 
