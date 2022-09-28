@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Create_Product } from 'src/app/contracts/create_product';
+import { List_Product } from 'src/app/contracts/list_products';
 import { HttpClientService } from '../http-client.service';
 
 @Injectable({
@@ -11,6 +12,7 @@ export class ProductService {
   constructor(private httpClientService : HttpClientService) { }
 
   create(product : Create_Product, successCallBack? : any, errorCallBack?: any){
+
     this.httpClientService.post({
       controller: "products"
 
@@ -30,5 +32,18 @@ export class ProductService {
       errorCallBack(message);
     });
 
+
+
+ 
+ 
   }
+      async read() : Promise<List_Product[]>{
+      const promiseData : Promise<List_Product[]> =  this.httpClientService.get<List_Product[]>({
+        controller : "products"
+      }).toPromise();
+
+      promiseData.then()
+      .catch()
+      return await promiseData;
+    }
 }
