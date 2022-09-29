@@ -8,7 +8,7 @@
 
 
 
-#Stacks
+# Stacks
 
 - .NET CORE 6 
 - Angular 13
@@ -31,8 +31,10 @@ Bootstrap , Toastr, Spinner
 
 
 
-
+----------------------------------------------------------------
 
 This is a bootcamp was immersively based on Dotnet technologies I have been attended and have costumely improved the lines of codes. This will remain a perfect demo 
 for my future project of entreprenuering. 
+I have tried to be type-safe and strongly-developed in depth.
+
 
