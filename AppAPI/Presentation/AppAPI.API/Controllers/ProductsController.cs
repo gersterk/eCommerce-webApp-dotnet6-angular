@@ -1,4 +1,5 @@
 ﻿using AppAPI.Application.Repositories;
+using AppAPI.Application.RequestParameters;
 using AppAPI.Application.ViewModels.Products;
 using AppAPI.Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -30,16 +31,19 @@ namespace AppAPI.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]Pagination pagination)
         {
-            return Ok(_productReadRepository.GetAll().Select(p => new
+            var products = _productReadRepository.GetAll().Select(p => new
             {
                 p.Id,
                 p.Name,
                 p.Price,
                 p.CreateDate,
-                p.UpdatedDate 
-            }));
+                p.UpdatedDate
+            }).Take(pagination.Page * pagination.Size).Skip(pagination.Size);
+
+
+            return Ok(products);
 
         }
         [HttpGet("{id}")]

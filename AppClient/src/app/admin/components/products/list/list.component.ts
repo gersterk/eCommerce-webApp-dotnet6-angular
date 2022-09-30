@@ -12,29 +12,32 @@ import { ProductService } from 'src/app/services/common/models/product.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class ListComponent extends BaseComponent implements OnInit {
 
   constructor(spinner : NgxSpinnerService,private productService: ProductService, private alertifyService : AlertifyService) {
     super(spinner)
 
    }
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
 
-  }
  displayedColumns: string[] = ['name', 'stock', 'price', 'createDate', 'updateDate'];
  dataSource : MatTableDataSource<List_Product>= null;
 @ViewChild(MatPaginator) paginator : MatPaginator;
 
-  async ngOnInit() {
+  async getProduct(){
+    
     this.showSpinner(SpinnerType.ballAtom);
     
-    const allProducts: List_Product[] = await this.productService.read(()=>this.hideSpinner(SpinnerType.ballAtom), errorMessage => this.alertifyService.message(errorMessage, {
+    const allProducts: List_Product[] = await this.productService.read(this.paginator.pageIndex, this.paginator.pageSize, ()=>this.hideSpinner(SpinnerType.ballAtom), errorMessage => this.alertifyService.message(errorMessage, {
       dismissOthers: true,
       messageType: MessageType.Error,
       position : Position.TopRight
     }))
     this.dataSource = new MatTableDataSource<List_Product>(allProducts);
+    this.dataSource.paginator = this.paginator;
+    
+  }
+  async ngOnInit() {
+    await this.getProduct();
 
   }
 
