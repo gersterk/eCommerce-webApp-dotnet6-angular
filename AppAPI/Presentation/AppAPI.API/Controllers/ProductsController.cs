@@ -33,17 +33,18 @@ namespace AppAPI.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery]Pagination pagination)
         {
-            var products = _productReadRepository.GetAll().Select(p => new
+            var totalCount = _productReadRepository.GetAll(false).Count();
+            var products = _productReadRepository.GetAll(false).Skip(pagination.Page * pagination.Size).Take(pagination.Size).Select(p => new
             {
                 p.Id,
                 p.Name,
                 p.Price,
                 p.CreateDate,
                 p.UpdatedDate
-            }).Take(pagination.Page * pagination.Size).Skip(pagination.Size);
+            }).ToList();
 
 
-            return Ok(products);
+            return Ok(totalCount, products);
 
         }
         [HttpGet("{id}")]

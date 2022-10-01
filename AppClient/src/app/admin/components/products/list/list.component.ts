@@ -27,15 +27,22 @@ export class ListComponent extends BaseComponent implements OnInit {
     
     this.showSpinner(SpinnerType.ballAtom);
     
-    const allProducts: List_Product[] = await this.productService.read(this.paginator.pageIndex, this.paginator.pageSize, ()=>this.hideSpinner(SpinnerType.ballAtom), errorMessage => this.alertifyService.message(errorMessage, {
+    const allProducts: {totalCount : number; products : List_Product[]} = await this.productService.read(this.paginator? this.paginator.pageIndex:0, this.paginator?  this.paginator.pageSize: 5, ()=>this.hideSpinner(SpinnerType.ballAtom), errorMessage => this.alertifyService.message(errorMessage, {
       dismissOthers: true,
       messageType: MessageType.Error,
       position : Position.TopRight
     }))
-    this.dataSource = new MatTableDataSource<List_Product>(allProducts);
-    this.dataSource.paginator = this.paginator;
+    this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
+    this.paginator.length = allProducts.totalCount;
     
   }
+
+
+  async pageChanged(){
+    await this.getProduct();
+  } 
+  
+  
   async ngOnInit() {
     await this.getProduct();
 
