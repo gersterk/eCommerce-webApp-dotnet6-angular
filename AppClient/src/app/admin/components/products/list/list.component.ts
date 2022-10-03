@@ -19,12 +19,12 @@ export class ListComponent extends BaseComponent implements OnInit {
 
    }
 
- displayedColumns: string[] = ['name', 'stock', 'price', 'createDate', 'updateDate'];
+ displayedColumns: string[] = ['name', 'stock', 'price', 'createDate', 'updateDate', 'delete', 'edit'];
  dataSource : MatTableDataSource<List_Product>= null;
 @ViewChild(MatPaginator) paginator : MatPaginator;
 
   async getProduct(){
-    
+
     this.showSpinner(SpinnerType.ballAtom);
     
     const allProducts: {totalCount : number; products : List_Product[]} = await this.productService.read(this.paginator? this.paginator.pageIndex:0, this.paginator?  this.paginator.pageSize: 5, ()=>this.hideSpinner(SpinnerType.ballAtom), errorMessage => this.alertifyService.message(errorMessage, {
