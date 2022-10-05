@@ -7,6 +7,10 @@ import { List_Product } from 'src/app/contracts/list_products';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 
+
+declare var $ : any;
+
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -34,8 +38,17 @@ export class ListComponent extends BaseComponent implements OnInit {
     }))
     this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
     this.paginator.length = allProducts.totalCount;
-    
   }
+   
+
+    delete(id, event){
+      
+      const img: HTMLImageElement = event.srcElement;
+
+      $(img.parentElement.parentElement).fadeOut(2000);
+
+    }
+
 
 
   async pageChanged(){
