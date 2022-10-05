@@ -39,17 +39,14 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
     this.paginator.length = allProducts.totalCount;
   }
-   
 
-    delete(id, event){
+    // delete(id, event){
       
-      const img: HTMLImageElement = event.srcElement;
+    //   const img: HTMLImageElement = event.srcElement;
 
-      $(img.parentElement.parentElement).fadeOut(2000);
+    //   $(img.parentElement.parentElement).fadeOut(2000);
 
-    }
-
-
+    // }
 
   async pageChanged(){
     await this.getProduct();
