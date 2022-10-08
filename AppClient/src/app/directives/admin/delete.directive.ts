@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 
@@ -26,13 +26,18 @@ export class DeleteDirective {
 
     }
     @Input() id:string;
+    @Output() callback : EventEmitter<any> = new EventEmitter();
+
     
     @HostListener("click")
     async onClick(){
       const td : HTMLTableCellElement = this.element.nativeElement;
       await this.productService.delete(this.id);
 
-    $(td.parentElement).fadeOut(1000);
+    $(td.parentElement).fadeOut(1000, ()=>{
+      this.callback.emit();
+
+    });
 
 
     }
