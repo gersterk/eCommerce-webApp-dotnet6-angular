@@ -38,3 +38,6 @@ for my future project of entreprenuering.
 I have tried to be type-safe and strongly-developed in depth.
 
 
+NgxFileDrop Library to upload files decently 
+
+
