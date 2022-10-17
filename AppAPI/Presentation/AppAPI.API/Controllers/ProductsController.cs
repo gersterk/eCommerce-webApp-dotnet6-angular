@@ -29,6 +29,8 @@ namespace AppAPI.API.Controllers
 
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
+            _webHostEnvironment = webHostEnvironment;
+
 
         }
 
@@ -111,7 +113,7 @@ namespace AppAPI.API.Controllers
 
             foreach (IFormFile file in Request.Form.Files)
             {
-                string fullpath  = Path.Combine(uploadPath, $"{rnd.NextDouble()}{Path.GetExtension(file.FileName)}");
+                string fullpath  = Path.Combine(uploadPath, $"{rnd.Next()}{Path.GetExtension(file.FileName)}");
                 using FileStream fileStream = new(fullpath, FileMode.Create, FileAccess.Write, FileShare.None, 1024*1024, useAsync: false);
                 await file.CopyToAsync(fileStream);
                 await fileStream.FlushAsync();
