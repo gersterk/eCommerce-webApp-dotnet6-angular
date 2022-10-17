@@ -92,5 +92,4 @@ export class FileUploadOptions{
   accept? : string;
   isAdminPage? : boolean = false;
 
-
  }

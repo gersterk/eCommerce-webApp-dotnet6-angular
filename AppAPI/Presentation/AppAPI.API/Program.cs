@@ -40,6 +40,8 @@ namespace AppAPI.API
                 app.UseSwaggerUI();
             }
 
+            app.UseStaticFiles(); //to use wwwroot
+
             app.UseCors();
 ;
             app.UseHttpsRedirection();
