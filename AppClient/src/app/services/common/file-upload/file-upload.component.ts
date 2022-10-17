@@ -1,6 +1,9 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { ToastrService } from 'ngx-toastr';
+import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr.service';
 import { HttpClientService } from '../http-client.service';
 
 @Component({
@@ -9,7 +12,9 @@ import { HttpClientService } from '../http-client.service';
   styleUrls: ['./file-upload.component.scss']
 })
 export class FileUploadComponent {
-  constructor(private httpclientService : HttpClientService) 
+  constructor(private httpclientService : HttpClientService, 
+    private alertifyService : AlertifyService,
+    private customToastrService : CustomToastrService) 
   {  }
 
     public files: NgxFileDropEntry[] = [];
@@ -35,8 +40,42 @@ export class FileUploadComponent {
 
     }, fileData).subscribe(data=>{
 
+      const message : string = "Files are uploaded successfuly!";
+
+      if(this.options.isAdminPage){
+
+        this.alertifyService.message(message, {
+          dismissOthers: true,
+          messageType : MessageType.Success,
+          position : Position.TopRight
+        })
+      }else{
+        this.customToastrService.message(message, "Successful",{
+          messageType : ToastrMessageType.Success,
+          position : ToastrPosition.TopRight
+        })
+
+      }
+
     }, (errorResponse : HttpErrorResponse) =>{
-      
+
+      const message : string = "There was an error while uploading the files!";
+
+
+     if(this.options.isAdminPage){
+
+        this.alertifyService.message(message, {
+          dismissOthers: true,
+          messageType : MessageType.Error,
+          position : Position.TopRight
+        })
+      }else{
+        this.customToastrService.message(message, "Error",{
+          messageType : ToastrMessageType.Error,
+          position : ToastrPosition.TopRight
+        })
+
+      }
     });
 
 
@@ -51,6 +90,7 @@ export class FileUploadOptions{
   queryString? : string;
   explanation? : string;
   accept? : string;
+  isAdminPage? : boolean = false;
 
 
  }
