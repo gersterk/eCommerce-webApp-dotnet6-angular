@@ -17,9 +17,11 @@ export class FileUploadComponent {
     private customToastrService : CustomToastrService) 
   {  }
 
-    public files: NgxFileDropEntry[] = [];
 
-    @Input() options : Partial<FileUploadOptions>;
+
+  public files: NgxFileDropEntry[] = [];
+
+  @Input() options : Partial<FileUploadOptions>;
 
   public selectedFiles(files: NgxFileDropEntry[]) {
     this.files = files;
@@ -32,6 +34,7 @@ export class FileUploadComponent {
     });
 
   }
+  
     this.httpclientService.post({
       controller: this.options.controller,
       action : this.options.action,
@@ -39,7 +42,6 @@ export class FileUploadComponent {
       headers : new HttpHeaders({"responseType" : "blob"})
 
     }, fileData).subscribe(data=>{
-
       const message : string = "Files are uploaded successfuly!";
 
       if(this.options.isAdminPage){
@@ -58,12 +60,10 @@ export class FileUploadComponent {
       }
 
     }, (errorResponse : HttpErrorResponse) =>{
-
       const message : string = "There was an error while uploading the files!";
 
 
      if(this.options.isAdminPage){
-
         this.alertifyService.message(message, {
           dismissOthers: true,
           messageType : MessageType.Error,

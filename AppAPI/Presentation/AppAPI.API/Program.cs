@@ -43,7 +43,7 @@ namespace AppAPI.API
             app.UseStaticFiles(); //to use wwwroot
 
             app.UseCors();
-;
+
             app.UseHttpsRedirection();
             
 
