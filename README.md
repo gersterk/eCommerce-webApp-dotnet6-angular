@@ -41,3 +41,6 @@ I have tried to be type-safe and strongly-developed in depth.
 NgxFileDrop Library to upload files decently 
 
 
+Im givin a break for a while... I need some qualifications to gain :D 
+
+
