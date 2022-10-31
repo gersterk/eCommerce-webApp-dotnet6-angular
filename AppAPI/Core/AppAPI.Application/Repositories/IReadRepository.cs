@@ -10,12 +10,14 @@ namespace AppAPI.Application.Repositories
 {
     public interface IReadRepository<T> : IRepository<T> where T : BaseEntity
     {
-        IQueryable<T> GetAll(bool tracking = true); //if wje would be looking for something to the with memory, we would use IENumerable but nah, lets query
+        IQueryable<T> GetAll(bool tracking = true); //if we would be looking for something to the with memory, we would use IENumerable but nah, lets query
         IQueryable<T> GetWhere(Expression<Func<T, bool>> method, bool tracking=true );
 
         Task<T> GetSingleAsync(Expression<Func<T, bool>> method, bool tracking = true); //brings THE ONE
         Task<T> GetByIdAsync(string id, bool tracking = true); //brings the choosen one
         
-        //tacking bool is for EF tracking 
+        //tracking bool is for EF tracking 
     }
 }
+
+
