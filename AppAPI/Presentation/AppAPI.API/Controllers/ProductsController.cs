@@ -1,8 +1,8 @@
 ﻿using AppAPI.Application.Repositories;
 using AppAPI.Application.RequestParameters;
+using AppAPI.Application.Services;
 using AppAPI.Application.ViewModels.Products;
 using AppAPI.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -18,15 +18,17 @@ namespace AppAPI.API.Controllers
         private readonly IProductReadRepository _productReadRepository;
         private readonly IProductWriteRepository _productWriteRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        readonly IFileService _fileService;
 
 
         public ProductsController(
             IProductReadRepository productReadRepository,
             IProductWriteRepository productWriteRepository,
+            IFileService fileService,
             IWebHostEnvironment webHostEnvironment)
 
         {
-
+            _fileService = fileService;
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
             _webHostEnvironment = webHostEnvironment;
@@ -107,6 +109,7 @@ namespace AppAPI.API.Controllers
         public async Task<IActionResult> Upload()
         {
 
+            _fileService.UploadAsync("resource/product-images", Request.Form.Files);
 
             return Ok();
         }

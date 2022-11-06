@@ -1,5 +1,6 @@
 
 using AppAPI.Application.Validators.Products;
+using AppAPI.Infrastructure;
 using AppAPI.Infrastructure.Filters;
 using AppAPI.Persistence;
 using FluentValidation.AspNetCore;
@@ -15,6 +16,8 @@ namespace AppAPI.API
 
             // Add services to the container.
             builder.Services.AddPersistenceService();
+            builder.Services.AddInfrastructureServices();
+
 
 
             builder.Services.AddCors(options=>options.AddDefaultPolicy(policy=>
