@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppAPI.Application", "Core\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8AA932DE-4A01-4BF5-BDCE-B251DFA8216A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppAPI.Infrastructure", "Infrastructure\AppAPI.Infrastructure\AppAPI.Infrastructure.csproj", "{62D0F327-69AD-45FE-AB67-04CE8DB5DADF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppAPI.Infrastructure", "Infrastructure\AppAPI.Infrastructure\AppAPI.Infrastructure.csproj", "{62D0F327-69AD-45FE-AB67-04CE8DB5DADF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppAPI.Persistence", "Infrastructure\AppAPI.Persistence\AppAPI.Persistence.csproj", "{A7BD32A2-CA0C-4D91-A349-A6A6761DB31E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppAPI.Persistence", "Infrastructure\AppAPI.Persistence\AppAPI.Persistence.csproj", "{A7BD32A2-CA0C-4D91-A349-A6A6761DB31E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{61E51233-C978-44B1-B65A-0A0507105CA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppAPI.API", "Presentation\AppAPI.API\AppAPI.API.csproj", "{7E88FAC7-542E-44BE-BB28-8AE2725D8BB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppAPI.API", "Presentation\AppAPI.API\AppAPI.API.csproj", "{7E88FAC7-542E-44BE-BB28-8AE2725D8BB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
