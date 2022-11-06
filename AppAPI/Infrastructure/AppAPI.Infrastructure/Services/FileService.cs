@@ -41,18 +41,34 @@ namespace AppAPI.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public async Task UploadAsync(string path, IFormFileCollection files)
+        public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection files)
         {
            string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, path);
 
             if (!Directory.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
 
+            List<(string fileName, string path)> datas = new();
+
+            List<bool> results = new();
             foreach (IFormFile file in files)
             {
                 string  fileNewName = await FileRenameAsync(file.FileName);
-                await CopyFileAsync($"{uploadPath}\\{fileNewName}", file); //string interpolation, I could have use path.combine too. but I need to practice this :)
+                bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file); 
+                //string interpolation, I could have use path.combine too. but I need to practice this :)
+                datas.Add((fileNewName, $"{uploadPath}\\{fileNewName}"));
+                results.Add(result);
             }
+            if (results.TrueForAll(r=> r.Equals(true)))
+            {
+                return datas;
+
+            }
+            return null;
+
+            //todo if the if func above, I should create a throw exceptions
+
+
         }
     }
 }

@@ -107,18 +107,7 @@ namespace AppAPI.API.Controllers
         public async Task<IActionResult> Upload()
         {
 
-            string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "resource/product-images");
 
-            Random rnd = new();
-
-            foreach (IFormFile file in Request.Form.Files)
-            {
-                string fullpath  = Path.Combine(uploadPath, $"{rnd.Next()}{Path.GetExtension(file.FileName)}");
-                using FileStream fileStream = new(fullpath, FileMode.Create, FileAccess.Write, FileShare.None, 1024*1024, useAsync: false);
-                await file.CopyToAsync(fileStream);
-                await fileStream.FlushAsync();
-
-            }
             return Ok();
         }
 
