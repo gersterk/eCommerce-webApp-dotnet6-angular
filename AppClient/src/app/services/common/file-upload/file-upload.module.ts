@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload.component';
 import { NgxFileDropModule } from 'ngx-file-drop';
 import { DialogModule } from '../../../dialogs/dialog.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -13,7 +14,9 @@ import { DialogModule } from '../../../dialogs/dialog.module';
   imports: [
     CommonModule,
     NgxFileDropModule,
-    DialogModule
+    DialogModule,
+    ToastrModule
+    
   ],
   exports:[
     FileUploadComponent
