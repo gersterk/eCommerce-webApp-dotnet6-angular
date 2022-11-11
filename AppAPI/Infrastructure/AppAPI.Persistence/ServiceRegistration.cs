@@ -24,10 +24,21 @@ namespace AppAPI.Persistence
            
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();  //AddScope was disposing context object. Because scope disposes each object that have created due to a request
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+
             services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
             services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+
             services.AddScoped<IProductReadRepository, ProductReadRepository>();
             services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
+
+            services.AddScoped<IFileReadRepository, FileReadRepository>();
+            services.AddScoped<IFileWriteRepository, FileWriteRepository>();
+
+            services.AddScoped<IProductImageFileReadRepository, ProductImageFileReadRepository>();
+            services.AddScoped<IProductImageFileWriteRepository, ProductImageFileWriteRepository>();
+
+            services.AddScoped<IInvoiceFileReadRepository, InvoiceFileReadRepository>();
+            services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
 
             
 

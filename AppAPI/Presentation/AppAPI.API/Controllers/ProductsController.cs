@@ -19,6 +19,13 @@ namespace AppAPI.API.Controllers
         private readonly IProductWriteRepository _productWriteRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         readonly IFileService _fileService;
+        readonly IFileWriteRepository _fileWriteRepository;
+        readonly IFileReadRepository _fileReadRepository;
+        readonly IProductImageFileReadRepository _productImageFileReadRepository;
+        readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
+        readonly IInvoiceFileReadRepository _invoiceFileReadRepository;
+        readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
+
 
 
         public ProductsController(
