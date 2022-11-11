@@ -26,21 +26,27 @@ namespace AppAPI.API.Controllers
         readonly IInvoiceFileReadRepository _invoiceFileReadRepository;
         readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
 
-
-
-        public ProductsController(
-            IProductReadRepository productReadRepository,
-            IProductWriteRepository productWriteRepository,
-            IFileService fileService,
-            IWebHostEnvironment webHostEnvironment)
-
+        public ProductsController(IProductReadRepository productReadRepository,
+                                  IProductWriteRepository productWriteRepository,
+                                  IWebHostEnvironment webHostEnvironment,
+                                  IFileService fileService,
+                                  IFileWriteRepository fileWriteRepository,
+                                  IFileReadRepository fileReadRepository,
+                                  IProductImageFileReadRepository productImageFileReadRepository,
+                                  IProductImageFileWriteRepository productImageFileWriteRepository,
+                                  IInvoiceFileReadRepository invoiceFileReadRepository,
+                                  IInvoiceFileWriteRepository invoiceFileWriteRepository)
         {
-            _fileService = fileService;
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
             _webHostEnvironment = webHostEnvironment;
-
-
+            _fileService = fileService;
+            _fileWriteRepository = fileWriteRepository;
+            _fileReadRepository = fileReadRepository;
+            _productImageFileReadRepository = productImageFileReadRepository;
+            _productImageFileWriteRepository = productImageFileWriteRepository;
+            _invoiceFileReadRepository = invoiceFileReadRepository;
+            _invoiceFileWriteRepository = invoiceFileWriteRepository;
         }
 
         [HttpGet]
@@ -116,8 +122,13 @@ namespace AppAPI.API.Controllers
         public async Task<IActionResult> Upload()
         {
 
-            _fileService.UploadAsync("resource/product-images", Request.Form.Files);
-
+            var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
+            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(x => new ProductImageFile()
+            {
+                FileName = x.fileName,
+                Path = x.path
+            }).ToList()) ;
+            await _productImageFileWriteRepository.SaveAsync();
             return Ok();
         }
 

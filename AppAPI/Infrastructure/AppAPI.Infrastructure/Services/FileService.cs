@@ -126,10 +126,10 @@ namespace AppAPI.Infrastructure.Services
 
             foreach (IFormFile file in files)
             {
-                string fileNewName = await FileRenameAsync(uploadPath, file.FileName);
-                bool result = await CopyFileAsync($"{uploadPath}\\{fileNewName}", file);
+                string fileNewName = await FileRenameAsync(path, file.FileName);
+                bool result = await CopyFileAsync($"{path}\\{fileNewName}", file);
                 //string interpolation, I could have use path.combine too. but I need to practice this :)
-                datas.Add((fileNewName, $"{uploadPath}\\{fileNewName}"));
+                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
                 results.Add(result);
             }
 
