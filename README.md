@@ -41,11 +41,5 @@ I have tried to be type-safe and strongly-developed in depth.
 NgxFileDrop Library to upload files decently 
 
 
-Im givin a break for a while... I need some qualifications to gain :D 
 
-11-9-2022
-Im back b*
-
-
-Saturday, 
-Table per hierarchy for file saving 
+CQRS and Mediator Design Patterns.
