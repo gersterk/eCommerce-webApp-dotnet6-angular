@@ -19,22 +19,41 @@ namespace AppAPI.Infrastructure.Services.Storage.Local
 
         }
 
-        public Task DeleteAsync(string path, string fileName)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteAsync(string path, string fileName)
+     
+            => File.Delete($"{path}\\{fileName}");
 
         public List<string> GetFiles(string path)
+
         {
-            throw new NotImplementedException();
+            DirectoryInfo directory = new(path);
+            return directory.GetFiles().Select(f => f.Name).ToList();
+
         }
 
         public bool HasFile(string path, string fileName)
+        => File.Exists($"{path}\\{fileName}");
+
+
+        async Task<bool> CopyFileAsync(string path, IFormFile file)
         {
-            throw new NotImplementedException();
+            try
+            {
+                await using FileStream fileStream = new(path, FileMode.Create, FileAccess.Write, FileShare.None, 1024 * 1024, useAsync: false);
+                await file.CopyToAsync(fileStream);
+                await fileStream.FlushAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //todo log!
+                throw ex;
+            }
+
         }
 
-        public Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string path, IFormFileCollection files)
+
+        public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string path, IFormFileCollection files)
         {
             string uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, path);
 
@@ -42,25 +61,16 @@ namespace AppAPI.Infrastructure.Services.Storage.Local
                 Directory.CreateDirectory(uploadPath);
 
             List<(string fileName, string path)> datas = new();
-            List<bool> results = new();
-
 
             foreach (IFormFile file in files)
             {
 
-                bool result = await CopyFileAsync($"{path}\\{fileNewName}", file);
+                await CopyFileAsync($"{path}\\{file.Name}", file);
                 //string interpolation, I could have use path.combine too. but I need to practice this :)
-                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
-                results.Add(result);
+                datas.Add((file.Name, $"{path}\\{file.Name}"));
             }
 
-
-            if (results.TrueForAll(r => r.Equals(true)))
-            {
-                return datas;
-
-            }
-            return null;
+            return datas;
         }
     }
 }

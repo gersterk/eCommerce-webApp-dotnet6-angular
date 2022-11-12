@@ -1,5 +1,4 @@
-﻿using AppAPI.Application.Services;
-using AppAPI.Infrastructure.Services;
+﻿using AppAPI.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,7 +12,6 @@ namespace AppAPI.Infrastructure
     {
         public static void AddInfrastructureServices(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped<IFileService, FileService>();
 
         }
     }

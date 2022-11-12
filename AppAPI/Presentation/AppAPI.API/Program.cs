@@ -17,9 +17,7 @@ namespace AppAPI.API
             // Add services to the container.
             builder.Services.AddPersistenceService();
             builder.Services.AddInfrastructureServices();
-
-
-
+            //builder.Services.AddStorage(StorageType.Azure);
             builder.Services.AddCors(options=>options.AddDefaultPolicy(policy=>
             policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()
             ));
