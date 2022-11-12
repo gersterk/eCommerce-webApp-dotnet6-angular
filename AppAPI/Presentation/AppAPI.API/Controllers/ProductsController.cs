@@ -1,6 +1,6 @@
-﻿using AppAPI.Application.Repositories;
+﻿using AppAPI.Application.Abstractions.Storage;
+using AppAPI.Application.Repositories;
 using AppAPI.Application.RequestParameters;
-using AppAPI.Application.Services;
 using AppAPI.Application.ViewModels.Products;
 using AppAPI.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -18,35 +18,37 @@ namespace AppAPI.API.Controllers
         private readonly IProductReadRepository _productReadRepository;
         private readonly IProductWriteRepository _productWriteRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        readonly IFileService _fileService;
+
         readonly IFileWriteRepository _fileWriteRepository;
         readonly IFileReadRepository _fileReadRepository;
         readonly IProductImageFileReadRepository _productImageFileReadRepository;
         readonly IProductImageFileWriteRepository _productImageFileWriteRepository;
         readonly IInvoiceFileReadRepository _invoiceFileReadRepository;
         readonly IInvoiceFileWriteRepository _invoiceFileWriteRepository;
+        readonly IStorageService _storageService;
+
 
         public ProductsController(IProductReadRepository productReadRepository,
                                   IProductWriteRepository productWriteRepository,
                                   IWebHostEnvironment webHostEnvironment,
-                                  IFileService fileService,
                                   IFileWriteRepository fileWriteRepository,
                                   IFileReadRepository fileReadRepository,
                                   IProductImageFileReadRepository productImageFileReadRepository,
                                   IProductImageFileWriteRepository productImageFileWriteRepository,
                                   IInvoiceFileReadRepository invoiceFileReadRepository,
-                                  IInvoiceFileWriteRepository invoiceFileWriteRepository)
+                                  IInvoiceFileWriteRepository invoiceFileWriteRepository,
+                                  IStorageService storageService)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
             _webHostEnvironment = webHostEnvironment;
-            _fileService = fileService;
             _fileWriteRepository = fileWriteRepository;
             _fileReadRepository = fileReadRepository;
             _productImageFileReadRepository = productImageFileReadRepository;
             _productImageFileWriteRepository = productImageFileWriteRepository;
             _invoiceFileReadRepository = invoiceFileReadRepository;
             _invoiceFileWriteRepository = invoiceFileWriteRepository;
+            _storageService = storageService;
         }
 
         [HttpGet]
@@ -122,12 +124,13 @@ namespace AppAPI.API.Controllers
         public async Task<IActionResult> Upload()
         {
 
-            var datas = await _fileService.UploadAsync("resource/product-images", Request.Form.Files);
+            var datas = await _storageService.UploadAsync("resource/product-images", Request.Form.Files);
             await _productImageFileWriteRepository.AddRangeAsync(datas.Select(x => new ProductImageFile()
             {
                 FileName = x.fileName,
-                Path = x.path
-            }).ToList()) ;
+                Path = x.pathOrContainerName,
+                Storage = "Local"
+            }).ToList());
             await _productImageFileWriteRepository.SaveAsync();
             return Ok();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AppAPI.Application.Abstractions.Storage;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppAPI.Application.Abstractions
 {
-    public interface IStorage
+    public interface IStorage 
     {
         Task<List<(string fileName, string pathOrContainerName)>> UploadAsync (string pathOrContainerName, IFormFileCollection files);
 

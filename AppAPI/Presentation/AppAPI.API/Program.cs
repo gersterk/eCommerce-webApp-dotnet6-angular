@@ -2,6 +2,7 @@
 using AppAPI.Application.Validators.Products;
 using AppAPI.Infrastructure;
 using AppAPI.Infrastructure.Filters;
+using AppAPI.Infrastructure.Services.Storage.Local;
 using AppAPI.Persistence;
 using FluentValidation.AspNetCore;
 
@@ -17,7 +18,7 @@ namespace AppAPI.API
             // Add services to the container.
             builder.Services.AddPersistenceService();
             builder.Services.AddInfrastructureServices();
-            //builder.Services.AddStorage(StorageType.Azure);
+            builder.Services.AddStorage<LocalStorage>();
             builder.Services.AddCors(options=>options.AddDefaultPolicy(policy=>
             policy.WithOrigins("http://localhost:4200", "https://localhost:4200").AllowAnyHeader().AllowAnyMethod()
             ));
