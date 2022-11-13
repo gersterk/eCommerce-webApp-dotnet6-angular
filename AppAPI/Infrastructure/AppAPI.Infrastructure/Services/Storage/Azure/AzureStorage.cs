@@ -24,9 +24,13 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
            
         }
 
-        public Task DeleteAsync(string containerName, string fileName)
+        public async Task DeleteAsync(string containerName, string fileName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            BlobClient blobClient = _blobContainerClient.GetBlobClient(fileName);
+            await blobClient.DeleteAsync();
+
+
         }
 
         public List<string> GetFiles(string containerName)
