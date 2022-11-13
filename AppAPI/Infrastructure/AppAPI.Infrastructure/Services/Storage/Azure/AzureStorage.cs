@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace AppAPI.Infrastructure.Services.Storage.Azure
 {
 
-    public class AzureStorage : IAzureStorage
+    public class AzureStorage : Storage,  IAzureStorage
     {
         readonly BlobServiceClient _blobServiceClient;
         BlobContainerClient _blobContainerClient;
@@ -53,9 +53,10 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
 
             foreach (IFormFile file in files)
             {
+                string fileNewName = await FileRenameAsync(containerName, file.Name, HasFile);
                 BlobClient blobClient = _blobContainerClient.GetBlobClient(file.Name);
                 await blobClient.UploadAsync(file.OpenReadStream());
-                datas.Add((file.Name, containerName));
+                datas.Add((fileNewName, containerName));
             }
             return datas;
         }

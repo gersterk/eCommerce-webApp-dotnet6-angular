@@ -22,7 +22,7 @@ namespace AppAPI.Infrastructure
 
         }
 
-        public static void AddStorage<T>(this IServiceCollection serviceCollection) where T : class, IStorage   
+        public static void AddStorage<T>(this IServiceCollection serviceCollection) where T : Storage, IStorage   
         {
             serviceCollection.AddScoped<IStorage, T>();
 

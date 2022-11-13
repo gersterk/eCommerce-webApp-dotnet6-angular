@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AppAPI.Infrastructure.Services.Storage.Local
 {
-    public class LocalStorage : ILocalStorage
+    public class LocalStorage : Storage, ILocalStorage
     {
         readonly IWebHostEnvironment _webHostEnvironment;
 
@@ -64,10 +64,10 @@ namespace AppAPI.Infrastructure.Services.Storage.Local
 
             foreach (IFormFile file in files)
             {
-
-                await CopyFileAsync($"{path}\\{file.Name}", file);
+                string fileNewName = await FileRenameAsync(path, file.Name, HasFile);
+                await CopyFileAsync($"{path}\\{fileNewName}", file);
                 //string interpolation, I could have use path.combine too. but I need to practice this :)
-                datas.Add((file.Name, $"{path}\\{file.Name}"));
+                datas.Add((fileNewName, $"{path}\\{fileNewName}"));
             }
 
             return datas;
