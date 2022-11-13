@@ -20,7 +20,7 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
         public AzureStorage(IConfiguration configuration)
 
         {
-            _blobServiceClient = new(configuration["Storage.Azure"]);
+            _blobServiceClient = new(configuration["S torage.Azure"]);
            
         }
 
@@ -35,12 +35,15 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
 
         public List<string> GetFiles(string containerName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            return _blobContainerClient.GetBlobs().Select(b => b.Name).ToList();
+
         }
 
         public bool HasFile(string containerName, string fileName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            return _blobContainerClient.GetBlobs().Any(b => b.Name == fileName);
         }
 
         public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string containerName, IFormFileCollection files)
@@ -60,6 +63,7 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
 
                 
             }
+            return datas;
 
         }
     }
