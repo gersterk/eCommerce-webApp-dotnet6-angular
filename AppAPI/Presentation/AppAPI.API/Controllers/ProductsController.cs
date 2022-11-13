@@ -129,8 +129,8 @@ namespace AppAPI.API.Controllers
             {
                 FileName = x.fileName,
                 Path = x.pathOrContainerName,
-                Storage = "Local"
-            }).ToList());
+                Storage = _storageService.StorageName
+            }).ToList()) ;
             await _productImageFileWriteRepository.SaveAsync();
             return Ok();
         }
