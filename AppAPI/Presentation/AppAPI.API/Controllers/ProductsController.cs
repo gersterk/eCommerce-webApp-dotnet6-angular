@@ -124,7 +124,7 @@ namespace AppAPI.API.Controllers
         public async Task<IActionResult> Upload()
         {
 
-            var datas = await _storageService.UploadAsync("resource/product-images", Request.Form.Files);
+            var datas = await _storageService.UploadAsync("files", Request.Form.Files);
             await _productImageFileWriteRepository.AddRangeAsync(datas.Select(x => new ProductImageFile()
             {
                 FileName = x.fileName,

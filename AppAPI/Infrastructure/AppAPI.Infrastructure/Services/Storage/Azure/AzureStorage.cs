@@ -20,8 +20,7 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
         public AzureStorage(IConfiguration configuration)
 
         {
-            _blobServiceClient = new(configuration["S torage.Azure"]);
-           
+            _blobServiceClient = new(configuration["Storage:Azure"]);
         }
 
         public async Task DeleteAsync(string containerName, string fileName)
@@ -30,16 +29,13 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
             BlobClient blobClient = _blobContainerClient.GetBlobClient(fileName);
             await blobClient.DeleteAsync();
 
-
         }
-
         public List<string> GetFiles(string containerName)
         {
             _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
             return _blobContainerClient.GetBlobs().Select(b => b.Name).ToList();
 
         }
-
         public bool HasFile(string containerName, string fileName)
         {
             _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
@@ -60,11 +56,8 @@ namespace AppAPI.Infrastructure.Services.Storage.Azure
                 BlobClient blobClient = _blobContainerClient.GetBlobClient(file.Name);
                 await blobClient.UploadAsync(file.OpenReadStream());
                 datas.Add((file.Name, containerName));
-
-                
             }
             return datas;
-
         }
     }
 }

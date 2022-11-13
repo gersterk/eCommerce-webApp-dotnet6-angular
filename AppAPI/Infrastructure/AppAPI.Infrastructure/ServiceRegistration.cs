@@ -3,6 +3,7 @@ using AppAPI.Application.Abstractions.Storage;
 using AppAPI.Infrastructure.Enums;
 using AppAPI.Infrastructure.Services;
 using AppAPI.Infrastructure.Services.Storage;
+using AppAPI.Infrastructure.Services.Storage.Azure;
 using AppAPI.Infrastructure.Services.Storage.Local;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -33,7 +34,10 @@ namespace AppAPI.Infrastructure
             {
                 case StorageType.AWS:
                     break;
+
                 case StorageType.Azure:
+                    serviceCollection.AddScoped<IStorage, AzureStorage>();
+
                     break;
                 case StorageType.Local:
                     serviceCollection.AddScoped<IStorage, LocalStorage>();
