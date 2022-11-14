@@ -1,7 +1,9 @@
+import { Dialog } from '@angular/cdk/dialog';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NgxFileDropEntry } from 'ngx-file-drop';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { FileUploadDialogComponent, FileUploadDialogState } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
 import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
@@ -18,7 +20,8 @@ export class FileUploadComponent {
   constructor(private httpclientService : HttpClientService, 
     private alertifyService : AlertifyService,
     private customToastrService : CustomToastrService,
-    private dialog : MatDialog)
+    private dialog : MatDialog,
+    private spinner: NgxSpinnerService)
      
 
   {  }
