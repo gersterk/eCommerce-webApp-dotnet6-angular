@@ -42,4 +42,4 @@ NgxFileDrop Library to upload files decently
 
 
 
-CQRS and MediatR Design Patterns.
+CQRS and MediatR Design Patterns will be implemented to the project
