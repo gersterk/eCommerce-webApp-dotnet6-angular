@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BaseDialog } from '../base/base-dialog';
 
 @Component({
-  selector: 'app-file-upload-dialog',
+  selector: 'app-file-upload',
   templateUrl: './file-upload-dialog.component.html',
   styleUrls: ['./file-upload-dialog.component.scss']
 })
