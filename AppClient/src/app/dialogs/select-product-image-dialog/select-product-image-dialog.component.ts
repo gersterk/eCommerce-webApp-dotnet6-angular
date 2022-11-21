@@ -24,8 +24,8 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
       controller : "products",
       explanation : "Choose or drag the product images",
       isAdminPage: true,
-      queryString : 
-    };
+      queryString : `id=${this.data}`
+    };  
 }
 
 export enum SelectProductImageState{
