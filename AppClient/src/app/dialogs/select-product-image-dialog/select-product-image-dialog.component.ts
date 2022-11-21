@@ -13,17 +13,21 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
 
   constructor(dialogRef : MatDialogRef<SelectProductImageDialogComponent>,
 
-    @Inject(MAT_DIALOG_DATA) public data: selectProductImageState | string ,)
+    @Inject(MAT_DIALOG_DATA) public data: SelectProductImageState | string ,)
     {
     super(dialogRef)
     }
 
-    @Output() options : Partial<FileUploadOptions> ={
+    @Output() options: Partial<FileUploadOptions> ={
       accept : ".png, .jpg, jpeg, .gif" ,
-      action : "upload"
+      action : "upload",
+      controller : "products",
+      explanation : "Choose or drag the product images",
+      isAdminPage: true,
+      queryString : 
     };
 }
 
-export enum selectProductImageState{
+export enum SelectProductImageState{
   Close
 }

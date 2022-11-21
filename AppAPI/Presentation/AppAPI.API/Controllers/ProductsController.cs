@@ -119,19 +119,22 @@ namespace AppAPI.API.Controllers
             
         }
 
-        [HttpPost("[action]")] 
+        [HttpPost("[action]")]
         //action should be imported here because I already have a Http POST and so should be implemented here to the endpoint
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload(string id)
         {
 
-            var datas = await _storageService.UploadAsync("files", Request.Form.Files);
-            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(x => new ProductImageFile()
+
+            List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", Request.Form.Files);
+            await _productImageFileWriteRepository.AddRangeAsync(result.Select(p => new ProductImageFile
             {
-                FileName = x.fileName,
-                Path = x.pathOrContainerName,
+                FileName = p.fileName,
+                Path = p.pathOrContainerName,
                 Storage = _storageService.StorageName
-            }).ToList()) ;
+            }).ToList());
             await _productImageFileWriteRepository.SaveAsync();
+
+
             return Ok();
         }
 

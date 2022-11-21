@@ -50,7 +50,7 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   addProductImages(id : string){
     this.dialogService.openDialog({
-      componentType: SelectProductImageDialogComponent,
+      componentType: SelectProductImageDialogComponent, 
       data : id,
       options : {
         width : "1400px"
