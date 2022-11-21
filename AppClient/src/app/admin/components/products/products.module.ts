@@ -23,7 +23,6 @@ import { DialogModule } from '@angular/cdk/dialog';
     ListComponent,
     DeleteDirective
 
-
   ],
   imports: [
     CommonModule,

@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor(private httpClientService : HttpClientService) { }
 
-  create(product : Create_Product, successCallBack? : any, errorCallBack?: (errorMessage : string)=> void){
+  create(product : Create_Product, successCallBack?: () => void, errorCallBack?: (errorMessage : string)=> void){
 
     this.httpClientService.post({
       controller: "products"
@@ -50,7 +50,7 @@ export class ProductService {
   async delete(id:string){
      const deleteObservable: Observable<any> = this.httpClientService.delete<any>({
       controller: "products"
-    }, id )
+    }, id );
 
     await firstValueFrom(deleteObservable);
 

@@ -16,9 +16,8 @@ export class AlertifyService {
     alertify.set('notifier', 'position', options.position);
     alertify[options.messageType](message);
     const msg = alertify[options.messageType](message);
-    if(options.dismissOthers){
+    if(options.dismissOthers)
       msg.dismissOthers();
-    }
 
   }
 

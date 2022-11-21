@@ -5,7 +5,5 @@ export class List_Product{
     stock:number;
     createDate : Date;
     updateDate: Date;
-    
-
 
 }
