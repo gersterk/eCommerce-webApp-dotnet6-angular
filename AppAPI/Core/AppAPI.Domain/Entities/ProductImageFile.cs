@@ -8,5 +8,6 @@ namespace AppAPI.Domain.Entities
 {
     public class ProductImageFile : File
     {
+        public Product Product { get; set; }
     }
 }
