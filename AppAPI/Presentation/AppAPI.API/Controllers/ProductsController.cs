@@ -4,6 +4,7 @@ using AppAPI.Application.RequestParameters;
 using AppAPI.Application.ViewModels.Products;
 using AppAPI.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace AppAPI.API.Controllers
@@ -119,7 +120,7 @@ namespace AppAPI.API.Controllers
             
         }
 
-        [HttpPost("[action]")]
+        [HttpPost("[action]")]   //query string
         //action should be imported here because I already have a Http POST and so should be implemented here to the endpoint
         public async Task<IActionResult> Upload(string id)
         {
@@ -138,5 +139,23 @@ namespace AppAPI.API.Controllers
             return Ok();
         }
 
+
+        [HttpGet("[action]/{id}")] //root data 
+        public async Task<IActionResult> GetProductImages(string id)
+        {
+           Product? product = await _productReadRepository.Table.Include(p => p.ProductImageFiles)
+                .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
+
+         
+            return Ok(product.ProductImageFiles.Select(p => new
+            {
+                p.Path,
+                p.FileName
+            }));
+
+
+            
+
+        }
     }
 }

@@ -18,6 +18,9 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
     super(dialogRef)
     }
 
+    x =[123, 1,8,59,78,7];
+    
+
     @Output() options: Partial<FileUploadOptions> ={
       accept : ".png, .jpg, jpeg, .gif" ,
       action : "upload",
