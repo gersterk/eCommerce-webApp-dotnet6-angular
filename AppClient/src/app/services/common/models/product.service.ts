@@ -38,7 +38,7 @@ export class ProductService {
       async read(page:number = 0, size :number= 5, successCallBack? : () => void, errorCallBack? : (errorMessage:string)=> void) : Promise<{totalCount : number; products : List_Product[]}>{
       const promiseData : Promise<{totalCount : number; products : List_Product[]}> =  this.httpClientService.get<{totalCount : number; products : List_Product[]}>({
         controller : "products",
-        queryString : `page= ${page}&size=${size}`
+        queryString : `page= ${page}&size=${size}` 
 
       }).toPromise();
 
@@ -56,5 +56,18 @@ export class ProductService {
 
   }
 
+  async readImages(id:string) : Promise<List_Product_Image[]>{
+    //Observable should be pointed and if could why not type-safe :)
+
+    const getObservable : Observable<List_Product_Image[]> =  this.httpClientService.get<List_Product_Image[]>({
+      action: "getproductimages",  //action names arent case sensitive
+      controller : "products"
+
+    }, id);
+
+    return await firstValueFrom(getObservable)
+
+    //the func must return something because it promise an array of LPI
+  }
 
 }

@@ -152,10 +152,7 @@ namespace AppAPI.API.Controllers
                 p.Path,
                 p.FileName
             }));
-
-
-            
-
+          
         }
     }
 }
